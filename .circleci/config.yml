@@ -1,8 +1,24 @@
 version: 2
 jobs:
-  build:
-    docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
-      - image: circleci/ruby:2.4.1-jessie
-    steps:
-      - checkout
-      - run: echo "A first hello"
+  one:
+    build:
+      docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
+        - image: circleci/ruby:2.4.1-jessie
+      steps:
+        - checkout
+        - run: echo "I can learn this shit"
+        - run: sleep 25
+  two:
+    build:
+      docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
+        - image: circleci/ruby:2.4.1-jessie
+      steps:
+        - checkout
+        - run: echo "I am learning this shit"
+        - run: sleep 15
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
